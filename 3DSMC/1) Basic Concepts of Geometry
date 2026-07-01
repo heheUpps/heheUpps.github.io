@@ -1,0 +1,45 @@
+## 3D Representation
+- Voxels (Volumetric Elements)
+- Point Cloud: (x,y,z) coordinate + attributes such as colour, normal, …
+- (Polygonal) Meshes: Vertices + Faces forming triangles
+	- Standard 3D Representation
+- Parametric Surfaces: Splines, NURBS
+- Implicit Surfaces: Signed Distance Field → Truncated SDF
+	- Important for 3D Scanning
+## Obtaining 3D
+- 3D Modelling (e.g. Blender)
+- Medical Imaging (e.g. MRI, CT)
+- Depth Sensors: Depth Camera is based on stereo vision, using Triangulation
+## Capture Devices
+### Passive
+- Stereo Depth Camera
+	- two fixed RGB cameras take picture at same time
+	- rolling shutter: capture pixels row by row → potentially distorted
+	- global shutter: small number of pixels, capture everything all at once
+	- Stereo Matching: finding correspondence (using triangulation / epipolar geometry)
+	- Sum of Squared Differences (SSD) to find best possible match
+	- More distance between cameras → more difficulties to calibrate but better result (numeric stability)
+	- Sparse Stereo Matching: Find and match “interesting” points (SIFT, SUFF, ORB)
+	- Search Window: too small → more noise, too big → less details
+	- Deep Learning / CNN can be used for feature matching
+- Multi-View Stereo
+	- e.g. Dome of Cameras
+
+### Active
+- Active Stereo
+	- project random pattern using Infrared (IR) to help reconstruct 3D scene
+	- usage of a Beam Splitter: one lens with IR and RGB sensor
+- Structured Light
+	- replace one of the stereo cameras with a projector
+	- IR image → estimate Depth → compute Normals from Depth
+	- Laser Camera: one camera replaced with laser camera
+	- high quality result / precision (depending on with of laser line)
+- Time of Flight (ToF)
+	- measure time between sending and receiving light sensor
+	- useful for large objects / distances
+	- not precise for small objects / distances → much noise
+	- LIDAR = Light Imaging Detection and Ranging
+	- used by autonomous driving cars, useful for large distances using GPS
+## Camera
+- Pixel → Camera (important: intrinsics)
+- Camera → World (important: extrinsics)
